@@ -11,12 +11,12 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var toolbar        : MaterialToolbar
     private lateinit var navController  : NavController
     private lateinit var bottomNavView  : BottomNavigationView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +30,14 @@ class MainActivity : AppCompatActivity() {
         val navHostFrag = supportFragmentManager.findFragmentById(R.id.nav_host_frag) as NavHostFragment
         navController   = navHostFrag.navController
 
-        // Define AppBarConfiguration: Connect Drawer Layout with navigation component
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        // Define AppBarConfiguration
+        val topLevelDestinations = setOf(R.id.fragmentCityList, R.id.fragmentFavoriteList)
+        val appBarConfiguration = AppBarConfiguration(topLevelDestinations)
 
-        // Connect Toolbar with navController
+        // Connect Toolbar with NavController
         toolbar.setupWithNavController(navController, appBarConfiguration)
 
-        // Connect Bottom NavigatinView with NavController
+        // Connect BottomNavigationView with NavController
         bottomNavView.setupWithNavController(navController)
     }
-
 }
